@@ -1,0 +1,71 @@
+name: Film zusammenschneiden
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'film/clips.txt'
+      - 'film/music_url.txt'
+      - '.github/workflows/film.yml'
+permissions:
+  contents: write
+concurrency:
+  group: film
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: ffmpeg bereitstellen
+        run: |
+          if ! command -v ffmpeg >/dev/null; then sudo apt-get update -y && sudo apt-get install -y ffmpeg; fi
+          ffmpeg -version | head -1
+      - name: Clips laden und angleichen
+        run: |
+          set -euo pipefail
+          mkdir -p work
+          n=0
+          : > work/list.txt
+          while IFS= read -r url; do
+            [ -z "$url" ] && continue
+            n=$((n+1))
+            f=$(printf 'work/raw_%02d.mp4' "$n")
+            o=$(printf 'work/clip_%02d.mp4' "$n")
+            curl -fsSL --retry 3 --max-time 180 -o "$f" "$url"
+            ffmpeg -hide_banner -loglevel error -y -i "$f" -an \
+              -vf "scale=720:1280:force_original_aspect_ratio=decrease,pad=720:1280:(ow-iw)/2:(oh-ih)/2:color=white,fps=24,format=yuv420p" \
+              -c:v libx264 -preset medium -crf 20 -movflags +faststart "$o"
+            echo "file '$(basename "$o")'" >> work/list.txt
+          done < film/clips.txt
+          echo "Clips: $n"
+          test "$n" -ge 1
+      - name: Zusammensetzen
+        run: |
+          set -euo pipefail
+          cd work
+          ffmpeg -hide_banner -loglevel error -y -f concat -safe 0 -i list.txt -c copy silent.mp4
+          dur=$(ffprobe -v error -show_entries format=duration -of csv=p=0 silent.mp4)
+          echo "Dauer: $dur"
+          music=$(head -1 ../film/music_url.txt | tr -d '[:space:]' || true)
+          if [ -n "$music" ]; then
+            curl -fsSL --retry 3 --max-time 180 -o music.bin "$music"
+            fade=$(python3 -c "print(max(0, float('$dur')-2.5))")
+            ffmpeg -hide_banner -loglevel error -y -i silent.mp4 -stream_loop -1 -i music.bin \
+              -map 0:v -map 1:a -c:v copy -c:a aac -b:a 160k \
+              -af "afade=t=in:st=0:d=0.5,afade=t=out:st=${fade}:d=2.5" -t "$dur" -movflags +faststart ../film.mp4
+          else
+            cp silent.mp4 ../film.mp4
+          fi
+          ls -la ../film.mp4
+      - name: Film ins Repo legen
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add film.mp4
+          if git diff --cached --quiet; then echo "keine Aenderung"; exit 0; fi
+          git commit -m "Film neu zusammengeschnitten"
+          git pull --rebase -q origin main
+          git push origin HEAD:main
