@@ -614,6 +614,52 @@ ul + .blk-sub { border-top: 2px solid var(--hair); }
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
 
+/* ---------- Web-Version: Film ---------- */
+.seg.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.seg.four a { font-size: 15px; gap: 5px; min-width: 0; }
+.fi { width: 22px; height: 22px; flex: none; fill: currentColor; stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; }
+.filmcard { display: grid; grid-template-columns: 60px minmax(0, 1fr) 20px; gap: 14px; align-items: center; padding: 10px 12px 10px 12px; text-decoration: none;
+  background: var(--sun); color: var(--ink); border: var(--bw) solid var(--line); border-radius: var(--r-card); box-shadow: var(--shadow); }
+.filmcard:active { transform: translate(2px, 2px); box-shadow: var(--shadow-s); }
+.fc-pic { position: relative; width: 60px; height: 76px; border-radius: 12px; border: 2px solid var(--line); background: var(--pink); overflow: hidden; display: grid; place-items: center; transform: rotate(-3deg); box-shadow: var(--shadow-s); }
+.fc-pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.fc-play { position: relative; width: 32px; height: 32px; border-radius: 50%; background: #fff; color: #2A2150; border: 2px solid #2A2150; display: grid; place-items: center; }
+.fc-play .fi { width: 16px; height: 16px; margin-left: 2px; }
+.fc-txt { display: grid; gap: 2px; min-width: 0; }
+.fc-txt b { font-family: var(--f-display); font-weight: 700; font-size: var(--t-lg); line-height: 1.2; }
+.fc-txt span { font-size: var(--t-md); font-weight: 700; opacity: .8; }
+.film { display: grid; gap: 10px; justify-items: center; min-width: 0; }
+.fstage { position: relative; width: min(100%, calc(70vh * 9 / 16)); aspect-ratio: 9 / 16; overflow: hidden; background: #1B1440;
+  border: var(--bw) solid var(--line); border-radius: var(--r-card); box-shadow: var(--shadow); -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; }
+@supports (height: 1dvh) { .fstage { width: min(100%, calc(max(240px, min(70dvh, 100dvh - 190px)) * 9 / 16)); } }
+.fv { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; background: #1B1440; z-index: 1; }
+.fv.on { z-index: 2; }
+.film.full .fv { position: absolute; z-index: 2; object-fit: contain; }
+.fbar { position: absolute; z-index: 5; left: 8px; right: 8px; top: 0; display: grid; grid-template-columns: repeat(16, minmax(0, 1fr)); gap: 3px; }
+.fstage::before { content: ""; position: absolute; z-index: 4; left: 0; right: 0; top: 0; height: 44px; background: linear-gradient(rgba(27, 20, 64, .55), rgba(27, 20, 64, 0)); pointer-events: none; }
+.film.full .fstage::before { display: none; }
+.fsg { height: 44px; padding: 10px 0 0; display: block; }
+.fsg i { display: block; height: 5px; border-radius: 3px; background: rgba(255, 255, 255, .42); box-shadow: 0 0 0 1px rgba(27, 20, 64, .6); overflow: hidden; }
+.fsg b { display: block; height: 100%; width: 0; background: #fff; }
+.fsg.done b { width: 100%; }
+.fsg.bad i { background: rgba(255, 92, 147, .75); }
+.fbig { position: absolute; z-index: 6; left: 50%; top: 50%; width: 84px; height: 84px; margin: -42px 0 0 -42px; border-radius: 50%; background: var(--sun); color: #2A2150; border: 3px solid #2A2150; box-shadow: 4px 4px 0 #2A2150; display: grid; place-items: center; }
+.fbig .fi { width: 38px; height: 38px; margin-left: 5px; }
+.fbig:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #2A2150; }
+.fover { position: absolute; z-index: 7; inset: 0; display: grid; align-content: center; justify-items: center; gap: 14px; padding: 20px; text-align: center; background: rgba(27, 20, 64, .78); color: #fff; }
+.fover p { font-family: var(--f-display); font-weight: 600; font-size: var(--t-xl); line-height: 1.25; }
+.fover p.sm { font-family: var(--f-body); font-weight: 700; font-size: var(--t-base); }
+.fover .btn { box-shadow: 2px 2px 0 #1B1440; border-color: #1B1440; }
+.fstage button:focus-visible { outline: 3px solid #fff; outline-offset: 2px; box-shadow: 0 0 0 7px var(--focus); }
+.fsg:focus-visible { outline-offset: -6px; box-shadow: none; }
+.ftitle { font-weight: 800; font-size: var(--t-base); text-align: center; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.fctl { display: flex; justify-content: center; align-items: center; gap: 14px; }
+.fbtn { width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--line); background: var(--card); color: var(--text); box-shadow: var(--shadow-s); display: grid; place-items: center; }
+.fbtn.pp { width: 58px; height: 58px; background: var(--lilac); color: var(--ink); }
+.fbtn:active { transform: translate(2px, 2px); box-shadow: none; }
+.fnote { min-height: 18px; font-size: var(--t-sm); font-weight: 700; color: var(--soft); text-align: center; }
+.fsub { font-size: var(--t-md); font-weight: 700; color: var(--soft); text-align: center; }
+
 /* ---------- Web-Version: verlinkte Bilder ---------- */
 .pics img.wimg { aspect-ratio: 4 / 3; height: auto; object-fit: cover; }
 .ty.pic img.wimg { aspect-ratio: 1 / 1; }
@@ -899,7 +945,7 @@ const IMG = {"mega-plaza-1":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/
   function overview() {
     var up = [], past = [];
     DAYS.forEach(function (d) { (today && d.date < today ? past : up).push(d); });
-    var h = '<section class="view" id="v-tage"><div class="pagehead"><h1>Alle Tage</h1><p>Tippt auf einen Tag für alle Spots und Links.</p></div>';
+    var h = '<section class="view" id="v-tage"><div class="pagehead"><h1>Alle Tage</h1><p>Tippt auf einen Tag für alle Spots und Links.</p></div>' + filmCard();
     h += up.map(dayCard).join('');
     if (past.length) h += '<p class="subhead">Schon vorbei</p>' + past.map(dayCard).join('');
     h += '<p class="subhead">Für die ganze Woche</p>';
@@ -1623,10 +1669,204 @@ const IMG = {"mega-plaza-1":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/
   }
 
   /* ---------- Aufbau ---------- */
-  var ids = ['tage', 'alles', 'karte'].concat(DAYS.map(function (d) { return d.id; }));
+
+  /* ---------- Web-Version: Film. Die Clips kommen als Hotlinks; nichts lädt, bevor jemand auf Play tippt. ---------- */
+  var FILM_FULL_URL = "film.mp4";
+  var CLIPS = [{"t":"Abflug","v":"https://app-uploads.krea.ai/public/086b4e03-80da-4b16-aab6-7f45c68088e3-video.mp4","p":"https://app-uploads.krea.ai/public/062abd9c-0b97-44a8-9ccc-3234c5b87b1c-image.png"},{"t":"Erster Night Market","v":"https://app-uploads.krea.ai/public/fb6ca6e2-221d-47b2-afbd-2a984ab82fd2-video.mp4","p":"https://app-uploads.krea.ai/public/b8478933-a8b7-40de-8fbf-4da23c85cc72-image.png"},{"t":"Der erste Strand","v":"https://app-uploads.krea.ai/public/ce398c7d-9ac0-47a4-abb8-494e0d03ca55-video.mp4","p":"https://app-uploads.krea.ai/public/d03c43ff-38c5-4b9b-9836-1069d0c688d3-image.png"},{"t":"T-Shirt-Sucht","v":"https://app-uploads.krea.ai/public/93581f61-b94f-4478-a7b9-89b1677d3bd6-video.mp4","p":"https://app-uploads.krea.ai/public/34028348-1164-44c7-a431-ccda4bb63708-image.png"},{"t":"Khao Sok","v":"https://app-uploads.krea.ai/public/e4ab48b5-c9fb-4f58-8f4b-f3bf017ce4af-video.mp4","p":"https://app-uploads.krea.ai/public/726b8521-a7fd-405b-a7f8-e468463b5eb2-image.png"},{"t":"Dschungel-Tour","v":"https://app-uploads.krea.ai/public/b94aed5c-73c1-4d52-ab13-d13185c284aa-video.mp4","p":"https://app-uploads.krea.ai/public/c9bee3c4-fdf3-4560-8a6f-22fcd3fed0c8-image.png"},{"t":"Zimmer ohne Klima","v":"https://app-uploads.krea.ai/public/16065b47-9d99-437c-b8b7-952a27ed572c-video.mp4","p":"https://app-uploads.krea.ai/public/ba5d48bd-5493-4c0f-8883-1940ac4e8e2e-image.png"},{"t":"Upgrade","v":"https://app-uploads.krea.ai/public/3085961d-730e-443a-9995-225dfbeae99d-video.mp4","p":"https://app-uploads.krea.ai/public/40941ca5-5390-4df2-96ec-ab593dbfd7e6-image.png"},{"t":"Bootstour","v":"https://app-uploads.krea.ai/public/63684de7-d419-4486-bbff-da21413b6e04-video.mp4","p":"https://app-uploads.krea.ai/public/63881e04-88cc-4799-84cb-7fea947ae537-image.png"},{"t":"System überhitzt","v":"https://app-uploads.krea.ai/public/a5734996-1dae-45cc-9954-a53c7461ac69-video.mp4","p":"https://app-uploads.krea.ai/public/dd889064-3039-4603-8554-a5a44d9aff01-image.png"},{"t":"Ein Job","v":"https://app-uploads.krea.ai/public/8ad24a1e-52d1-4872-925a-6d21c833457b-video.mp4","p":"https://app-uploads.krea.ai/public/3296c773-f5ba-4a76-85ad-46f89a9fe901-image.png"},{"t":"Rumms","v":"https://app-uploads.krea.ai/public/adb534a0-eeaa-48dd-9b5b-da2d6e0487d2-video.mp4","p":"https://app-uploads.krea.ai/public/289a9055-2242-4ebb-b2a8-294dc092fad3-image.png"},{"t":"Sturm","v":"https://app-uploads.krea.ai/public/0311def0-eb09-4d78-bfac-4c701ac998c3-video.mp4","p":"https://app-uploads.krea.ai/public/3681be79-bdd6-4777-bb09-7cc7dfd1bd45-image.png"},{"t":"E-Bike-Etappe","v":"https://app-uploads.krea.ai/public/70f0365b-a901-4885-9d84-319e9cbc407d-video.mp4","p":"https://app-uploads.krea.ai/public/e64eecb5-a1f4-444a-8236-ef544b6b7293-image.png"},{"t":"Der Affe","v":"https://app-uploads.krea.ai/public/c09ffc1d-7cb3-4b57-bbc8-36a0bc15441e-video.mp4","p":"https://app-uploads.krea.ai/public/9ee6faab-8825-4f1f-bc56-d62218ed298c-image.png"},{"t":"Fortsetzung in Bangkok","v":"https://app-uploads.krea.ai/public/309c68ec-1b73-4f82-9d3f-d2b102d85060-video.mp4","p":"https://app-uploads.krea.ai/public/3ff28f82-5a62-4f67-8684-88618f734a9b-image.png"}];
+  var FI = {
+    play: '<svg class="fi" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.500v13l11-6.500z"/></svg>',
+    pause: '<svg class="fi" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.500 5.500h2.500v13h-2.500zM14 5.500h2.500v13H14z"/></svg>',
+    prev: '<svg class="fi" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6v12M19 6v12l-9-6z"/></svg>',
+    next: '<svg class="fi" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6v12M5 6v12l9-6z"/></svg>'
+  };
+  function filmCard() {
+    return '<a class="filmcard" href="#film"><span class="fc-pic"><img src="' + esc(CLIPS[0].p) + '" width="60" height="76" decoding="async" referrerpolicy="no-referrer" alt=""><span class="fc-play">' + FI.play + '</span></span>' +
+      '<span class="fc-txt"><b>Unser Film: Teil 1</b><span>' + (FILM_FULL_URL ? 'Jetzt ansehen' : CLIPS.length + ' Szenen · 1:36 min · ohne Ton') + '</span></span>' + I.right + '</a>';
+  }
+  function filmView() {
+    var h = '<section class="view" id="v-film" hidden><div class="pagehead"><h1>Unser Film: Teil 1</h1></div>', i;
+    if (FILM_FULL_URL) {
+      h += '<div class="film full" id="film"><div class="fstage" id="fstage"><video class="fv" id="ffull" controls playsinline preload="metadata" poster="' + esc(CLIPS[0].p) + '" src="' + esc(FILM_FULL_URL) + '" aria-label="Unser Film: Teil 1"></video>' +
+        '<div class="fover" id="fdead" role="alert" hidden><p>Der Film lässt sich gerade nicht laden.</p><p class="sm">Prüft die Verbindung und ladet die Seite neu.</p></div></div></div>';
+    } else {
+      h += '<div class="film" id="film"><div class="fstage" id="fstage">' +
+        '<video class="fv on" playsinline muted preload="none" disableremoteplayback tabindex="-1" aria-hidden="true" poster="' + esc(CLIPS[0].p) + '"></video>' +
+        '<video class="fv" playsinline muted preload="none" disableremoteplayback tabindex="-1" aria-hidden="true"></video>' +
+        '<div class="fbar" role="group" aria-label="Szenen">';
+      for (i = 0; i < CLIPS.length; i++) h += '<button type="button" class="fsg" data-fi="' + i + '" aria-label="Szene ' + (i + 1) + ': ' + esc(CLIPS[i].t) + '"><i><b></b></i></button>';
+      h += '</div><button type="button" class="fbig" id="fbig" aria-label="Film abspielen">' + FI.play + '</button>' +
+        '<div class="fover" id="fend" hidden><p>Fortsetzung folgt.</p><button type="button" class="btn primary" id="fagain">Nochmal ansehen</button></div>' +
+        '<div class="fover" id="fdead" role="alert" hidden><p>Der Film lässt sich gerade nicht laden.</p><p class="sm">Prüft die Verbindung und versucht es noch einmal.</p><button type="button" class="btn" id="fretry">Nochmal versuchen</button></div>' +
+        '</div><p class="ftitle" id="ftitle" aria-live="polite"></p>' +
+        '<div class="fctl" role="group" aria-label="Steuerung"><button type="button" class="fbtn" id="fprev" aria-label="Vorherige Szene">' + FI.prev + '</button>' +
+        '<button type="button" class="fbtn pp" id="fpp" aria-label="Abspielen">' + FI.play + '</button>' +
+        '<button type="button" class="fbtn" id="fnext" aria-label="Nächste Szene">' + FI.next + '</button></div>' +
+        '<p class="fnote" id="fnote" role="status"></p></div>';
+    }
+    return h + '<p class="fsub">Teil 1: von Köln bis Koh Lanta. Fortsetzung folgt.</p></section>';
+  }
+  var filmShow = function () {};                                            /* wird von show() gerufen: true = Film-Ansicht sichtbar */
+  function filmInit() {
+    var root = document.getElementById('film'), ci = document.querySelector('.filmcard img');
+    function $(id) { return document.getElementById(id); }
+    if (ci) ci.addEventListener('error', function () { if (ci.parentNode) ci.parentNode.removeChild(ci); });
+    if (!root) return;
+    var dead = false, deadBox = $('fdead');
+    if (FILM_FULL_URL) {                                                    /* fertiger Film: ein Video, normale Controls, mit Ton */
+      var fv = $('ffull');
+      fv.addEventListener('error', function () { dead = true; fv.removeAttribute('controls'); try { fv.pause(); } catch (e) {} deadBox.hidden = false; });
+      filmShow = function (on) { if (!on) try { fv.pause(); } catch (e) {} };
+      document.addEventListener('visibilitychange', function () { if (document.hidden) filmShow(false); });
+      return;
+    }
+    var N = CLIPS.length, stage = $('fstage'), vids = root.querySelectorAll('video.fv'), segs = root.querySelectorAll('.fsg'),
+      big = $('fbig'), endBox = $('fend'), title = $('ftitle'), pp = $('fpp'), note = $('fnote'),
+      a = 0, idx = 0, pend = vids[0], playing = false, started = false, ended = false, okEver = 0, consec = 0, lastT = -1, lastMove = 0, raf = 0, wd = 0, STALL = 8000;
+    function now() { return window.performance && performance.now ? performance.now() : +new Date(); }
+    function mark() { lastT = -1; lastMove = now(); }
+    function setSrc(v, i) { v._i = i; v._ok = false; v.muted = true; v.poster = CLIPS[i].p; v.preload = 'auto'; v.src = CLIPS[i].v; }
+    function fillOf(i) { return segs[i].firstChild.firstChild; }
+    function ui() {
+      var i, t = 'Szene ' + (idx + 1) + ' von ' + N + ' · ' + CLIPS[idx].t;
+      if (title.textContent !== t) title.textContent = t;
+      for (i = 0; i < N; i++) {
+        segs[i].classList.toggle('done', ended || i < idx);
+        if (i === idx && !ended) segs[i].setAttribute('aria-current', 'true'); else segs[i].removeAttribute('aria-current');
+        if (i !== idx || ended) fillOf(i).style.width = '';
+      }
+      pp.innerHTML = playing ? FI.pause : FI.play;
+      pp.setAttribute('aria-label', playing ? 'Pause' : (ended ? 'Nochmal ansehen' : 'Abspielen'));
+      big.hidden = playing || ended || dead;
+      big.setAttribute('aria-label', started ? 'Weiter abspielen' : 'Film abspielen');
+      endBox.hidden = !ended; deadBox.hidden = !dead;
+    }
+    function frame() {
+      raf = 0;
+      if (!playing) return;
+      var v = vids[a], d = v.duration;
+      if (v._i === idx) { if (!(d > 0) || !isFinite(d)) d = 6; fillOf(idx).style.width = Math.max(0, Math.min(100, v.currentTime / d * 100)).toFixed(1) + '%'; }
+      raf = requestAnimationFrame(frame);
+    }
+    function loop() { if (!raf) raf = requestAnimationFrame(frame); if (!wd) wd = setInterval(tick, 1000); }
+    function kick(v) {
+      var p;
+      try { p = v.play(); } catch (e) {}
+      if (p && p.catch) p.catch(function (err) { if (err && err.name === 'NotAllowedError' && v === pend && playing) { playing = false; ui(); } });
+    }
+    function go(i) {                                                        /* Szene i starten: im unsichtbaren Video anspielen, erst beim ersten Bild umschalten */
+      if (dead) return;
+      var cur = vids[a], oth = vids[1 - a];
+      started = true; ended = false; playing = true; idx = i;
+      fillOf(i).style.width = '0%';
+      if (cur._i === i && !cur.error) { pend = cur; try { oth.pause(); cur.currentTime = 0; } catch (e) {} }
+      else {
+        pend = oth; try { cur.pause(); } catch (e) {}
+        if (oth._i !== i || oth.error) setSrc(oth, i); else if (oth.currentTime) try { oth.currentTime = 0; } catch (e) {}
+      }
+      mark(); kick(pend); ui(); loop();
+    }
+    function flip(v) {
+      if (v !== pend || v._i !== idx || v === vids[a]) return;
+      var old = vids[a];
+      v.classList.add('on'); old.classList.remove('on'); try { old.pause(); } catch (e) {}
+      a = v === vids[0] ? 0 : 1;
+      var nx = idx + 1;                                                     /* das frei gewordene Video lädt schon die nächste Szene */
+      if (nx < N && (old._i !== nx || old.error)) setSrc(old, nx);
+    }
+    function onPlaying(e) {
+      var v = e.target, done = false;
+      if (v !== pend || v._i !== idx) return;
+      if (!v._ok) { v._ok = true; okEver++; consec = 0; segs[idx].classList.remove('bad'); }
+      mark();
+      if (v === vids[a]) { var o = vids[1 - a], nx = idx + 1; if (nx < N && (o._i !== nx || o.error)) setSrc(o, nx); return; }
+      function f() { if (!done) { done = true; flip(v); } }
+      if (v.requestVideoFrameCallback) { v.requestVideoFrameCallback(f); setTimeout(f, 300); } else f();
+    }
+    function finish() {
+      if (!okEver) return die();
+      ended = true; playing = false; ui();
+    }
+    function die() {
+      dead = true; playing = false;
+      try { vids[0].pause(); vids[1].pause(); } catch (e) {}
+      idx = Math.max(0, idx - consec + 1); consec = 0; note.textContent = ''; ui();
+    }
+    function fail(i) {
+      if (i !== idx || !playing || dead) return;
+      consec++; segs[i].classList.add('bad');
+      note.textContent = 'Szene ' + (i + 1) + ' konnte nicht geladen werden.';
+      if (consec >= 3) return die();                                        /* drei in Folge: da lädt gerade gar nichts */
+      if (i + 1 < N) go(i + 1); else finish();
+    }
+    function tick() {
+      if (!playing) return;
+      var t = pend.currentTime;
+      if (t !== lastT) { lastT = t; lastMove = now(); return; }
+      if (now() - lastMove > STALL) fail(idx);
+    }
+    function pause() {
+      if (!playing) return;
+      playing = false;
+      try { vids[0].pause(); vids[1].pause(); } catch (e) {}
+      ui();
+    }
+    function toggle() {
+      if (dead) return;
+      if (!started || ended) { note.textContent = ''; return go(0); }
+      if (playing) return pause();
+      playing = true; mark(); kick(pend); ui(); loop();
+    }
+    function prev() { if (!dead) go(ended ? N - 1 : Math.max(0, idx - 1)); }
+    function next() { if (dead) return; if (ended) return; if (idx + 1 < N) go(idx + 1); else if (started) finish(); }
+    [0, 1].forEach(function (k) {
+      var v = vids[k]; v._i = -1; v.muted = true;
+      v.addEventListener('playing', onPlaying);
+      v.addEventListener('ended', function () {
+        if (v !== vids[a] || v._i !== idx || !playing) return;
+        if (consec === 0) note.textContent = '';
+        if (idx + 1 < N) go(idx + 1); else finish();
+      });
+      v.addEventListener('error', function () { if (v === pend && v._i === idx) fail(idx); });
+    });
+    stage.addEventListener('click', function (e) {
+      var t = e.target, r, x;
+      while (t && t !== stage) { if (t.tagName === 'BUTTON') return; t = t.parentNode; }
+      if (dead || ended) return;
+      if (!started) return toggle();
+      r = stage.getBoundingClientRect(); x = (e.clientX - r.left) / r.width;
+      if (x < .3) prev(); else if (x > .7) next(); else toggle();
+    });
+    root.addEventListener('click', function (e) {
+      var t = e.target;
+      while (t && t !== root && t.tagName !== 'BUTTON') t = t.parentNode;
+      if (!t || t === root) return;
+      if (t.hasAttribute('data-fi')) { if (dead) return; note.textContent = ''; go(+t.getAttribute('data-fi')); }
+      else if (t.id === 'fbig' || t.id === 'fpp') {
+        toggle();
+        if (t.id === 'fbig') { var b = $('fnext').getBoundingClientRect().bottom + 12 - window.innerHeight; if (b > 0) window.scrollBy(0, b); }
+      }
+      else if (t.id === 'fprev') prev();
+      else if (t.id === 'fnext') next();
+      else if (t.id === 'fagain') { note.textContent = ''; go(0); pp.focus(); }
+      else if (t.id === 'fretry') { dead = false; consec = 0; okEver = 0; go(idx); pp.focus(); }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (document.getElementById('v-film').hidden || e.altKey || e.ctrlKey || e.metaKey) return;
+      var tg = e.target && e.target.tagName, k = e.key;
+      if (tg === 'INPUT' || tg === 'TEXTAREA' || tg === 'SELECT') return;
+      if (k === ' ' || k === 'Spacebar') { if (tg === 'BUTTON' || tg === 'A') return; e.preventDefault(); toggle(); }
+      else if (k === 'ArrowLeft') { e.preventDefault(); prev(); }
+      else if (k === 'ArrowRight') { e.preventDefault(); next(); }
+    });
+    filmShow = function (on) { if (!on) pause(); };
+    document.addEventListener('visibilitychange', function () { if (document.hidden) pause(); });
+    window.BKKFILM = { state: function () { return { idx: idx, playing: playing, started: started, ended: ended, dead: dead, ok: okEver, active: vids[a]._i }; }, stall: function (ms) { STALL = ms; } };
+    ui();
+  }
+  var ids = ['tage', 'alles', 'karte', 'film'].concat(DAYS.map(function (d) { return d.id; }));
   document.getElementById('seg').innerHTML =
-    '<a href="#tage" data-seg="tage">' + I.grid + '<span>Tage</span></a><a href="#alles" data-seg="alles">' + I.list + '<span>Alles</span></a><a href="#karte" data-seg="karte">' + I.map + '<span>Karte</span></a>';
-  document.getElementById('seg').classList.add('three');
+    '<a href="#tage" data-seg="tage">' + I.grid + '<span>Tage</span></a><a href="#alles" data-seg="alles">' + I.list + '<span>Alles</span></a><a href="#karte" data-seg="karte">' + I.map + '<span>Karte</span></a><a href="#film" data-seg="film">' + FI.play + '<span>Film</span></a>';
+  document.getElementById('seg').classList.add('four');
   document.getElementById('pills').innerHTML =
     '<a class="pill all" href="#tage" data-id="tage" aria-label="Alle Tage">' + I.grid + '<span class="wd">Alle</span></a>' +
     DAYS.map(function (d) {
@@ -1635,7 +1875,8 @@ const IMG = {"mega-plaza-1":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/
         '<span class="wd">' + esc(wd(d)) + '</span><span class="dn">' + esc(dn(d)) + '</span>' + (isT ? '<span class="dot"></span>' : '') + '</a>';
     }).join('');
   var main = document.getElementById('main');
-  main.innerHTML = overview() + DAYS.map(dayView).join('') + allView() + mapView();
+  main.innerHTML = overview() + DAYS.map(dayView).join('') + allView() + mapView() + filmView();
+  filmInit();
 
   /* ---------- Werkzeuge: Favoriten, Jetzt offen, In der Nähe ---------- */
   var CATN = {};
@@ -1954,6 +2195,7 @@ const IMG = {"mega-plaza-1":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/
     var id = (location.hash || '').slice(1);
     if (ids.indexOf(id) < 0) id = 'tage';
     ids.forEach(function (v) { document.getElementById('v-' + v).hidden = v !== id; });
+    filmShow(id === 'film');
     if (id === 'alles') applyAll();
     var pills = document.querySelectorAll('.pill');
     for (var i = 0; i < pills.length; i++) {
@@ -1964,7 +2206,7 @@ const IMG = {"mega-plaza-1":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/
     }
     var segs = document.querySelectorAll('#seg a');
     for (i = 0; i < segs.length; i++) {
-      if (segs[i].getAttribute('data-seg') === (id === 'alles' || id === 'karte' ? id : 'tage')) segs[i].setAttribute('aria-current', 'true');
+      if (segs[i].getAttribute('data-seg') === (id === 'alles' || id === 'karte' || id === 'film' ? id : 'tage')) segs[i].setAttribute('aria-current', 'true');
       else segs[i].removeAttribute('aria-current');
     }
     if (scroll) {
