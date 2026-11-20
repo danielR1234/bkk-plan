@@ -34,7 +34,7 @@ jobs:
             f=$(printf 'work/raw_%02d.mp4' "$n")
             o=$(printf 'work/clip_%02d.mp4' "$n")
             curl -fsSL --retry 3 --max-time 180 -o "$f" "$url"
-            ffmpeg -hide_banner -loglevel error -y -i "$f" -an \
+            ffmpeg -nostdin -hide_banner -loglevel error -y -i "$f" -an \
               -vf "scale=720:1280:force_original_aspect_ratio=decrease,pad=720:1280:(ow-iw)/2:(oh-ih)/2:color=white,fps=24,format=yuv420p" \
               -c:v libx264 -preset medium -crf 20 -movflags +faststart "$o"
             echo "file '$(basename "$o")'" >> work/list.txt
@@ -45,14 +45,14 @@ jobs:
         run: |
           set -euo pipefail
           cd work
-          ffmpeg -hide_banner -loglevel error -y -f concat -safe 0 -i list.txt -c copy silent.mp4
+          ffmpeg -nostdin -hide_banner -loglevel error -y -f concat -safe 0 -i list.txt -c copy silent.mp4
           dur=$(ffprobe -v error -show_entries format=duration -of csv=p=0 silent.mp4)
           echo "Dauer: $dur"
           music=$(head -1 ../film/music_url.txt | tr -d '[:space:]' || true)
           if [ -n "$music" ]; then
             curl -fsSL --retry 3 --max-time 180 -o music.bin "$music"
             fade=$(python3 -c "print(max(0, float('$dur')-2.5))")
-            ffmpeg -hide_banner -loglevel error -y -i silent.mp4 -stream_loop -1 -i music.bin \
+            ffmpeg -nostdin -hide_banner -loglevel error -y -i silent.mp4 -stream_loop -1 -i music.bin \
               -map 0:v -map 1:a -c:v copy -c:a aac -b:a 160k \
               -af "afade=t=in:st=0:d=0.5,afade=t=out:st=${fade}:d=2.5" -t "$dur" -movflags +faststart ../film.mp4
           else
